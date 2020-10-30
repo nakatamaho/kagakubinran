@@ -1,0 +1,16 @@
+CMAKEVERSION=3.16.3
+
+WRKDIR=$KAGAKUBINRANSETUPDIR/work_cmake
+rm -rf $WRKDIR
+mkdir $WRKDIR
+
+cd $WRKDIR
+rm -rf cmake-$CMAKEVERSION/
+tar xvfz $KAGAKUBINRANARCHIVESDIR/cmake-$CMAKEVERSION.tar.gz
+cd cmake-$CMAKEVERSION
+./bootstrap --prefix=$KAGAKUBINRANPKGDIR
+make -j`nproc`
+make install
+
+cd $KAGAKUBINRANSETUPDIR
+rm -rf $WRKDIR
